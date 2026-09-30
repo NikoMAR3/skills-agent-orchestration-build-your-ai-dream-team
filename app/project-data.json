@@ -1,0 +1,32 @@
+{
+  "projects": [
+    {
+      "name": "Atlas Mobile",
+      "owner": "Priya Nair",
+      "status": "On track",
+      "recentActivity": "Beta release candidate passed QA review",
+      "priority": "High"
+    },
+    {
+      "name": "Data Sync",
+      "owner": "Marco Silva",
+      "status": "At risk",
+      "recentActivity": "API timeout reduced but still under monitoring",
+      "priority": "Medium"
+    },
+    {
+      "name": "Client Portal",
+      "owner": "Aisha Khan",
+      "status": "Blocked",
+      "recentActivity": "Integration wait on external partner approval",
+      "priority": "Critical"
+    },
+    {
+      "name": "Knowledge Hub",
+      "owner": "Leo Martinez",
+      "status": "On track",
+      "recentActivity": "Search indexing completed for new content set",
+      "priority": "Low"
+    }
+  ]
+}

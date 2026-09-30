@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Project Pulse</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="dashboard">
+      <header class="dashboard-header">
+        <div>
+          <p class="eyebrow">Contributor overview</p>
+          <h1>Project Pulse</h1>
+        </div>
+      </header>
+
+      <section class="project-grid" id="project-grid" aria-live="polite"></section>
+    </main>
+
+    <script>
+      const projectGrid = document.getElementById('project-grid');
+
+      async function loadProjects() {
+        const response = await fetch('./project-data.json');
+        const data = await response.json();
+        const projects = data.projects || [];
+
+        projectGrid.innerHTML = projects
+          .map(
+            (project) => `
+              <article class="project-card" data-status="${project.status}">
+                <div class="project-topline">
+                  <h2>${project.name}</h2>
+                  <span class="status-badge status-${project.status.toLowerCase().replace(/\s+/g, '-')}">${project.status}</span>
+                </div>
+
+                <dl class="project-meta">
+                  <div>
+                    <dt>Owner</dt>
+                    <dd>${project.owner}</dd>
+                  </div>
+                  <div>
+                    <dt>Recent activity</dt>
+                    <dd>${project.recentActivity}</dd>
+                  </div>
+                  <div>
+                    <dt>Priority</dt>
+                    <dd>${project.priority}</dd>
+                  </div>
+                </dl>
+              </article>
+            `
+          )
+          .join('');
+      }
+
+      loadProjects().catch((error) => {
+        projectGrid.innerHTML = `
+          <p class="error-message">Unable to load project data. ${error.message}</p>
+        `;
+      });
+    </script>
+  </body>
+</html>
